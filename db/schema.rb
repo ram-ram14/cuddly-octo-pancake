@@ -3,6 +3,7 @@ ActiveRecord::Schema.define(version: 2023_04_22_135916) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  # Created columns for the database with the following attributes
   create_table "users", force: :cascade do |t|
     t.text "username"
     t.text "email"
