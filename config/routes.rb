@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'reviews/index'
+  get 'reviews/show'
+  get 'reviews/edit'
+  get 'reviews/new'
   get 'users/index'
   get 'users/show'
   get 'users/edit'
