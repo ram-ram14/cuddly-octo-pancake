@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2023_04_24_031956) do
     t.text "runtime"
     t.text "poster_image"
     t.text "cast"
+    t.text "genre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

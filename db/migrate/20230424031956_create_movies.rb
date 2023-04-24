@@ -8,6 +8,7 @@ class CreateMovies < ActiveRecord::Migration[5.2]
       t.text :runtime
       t.text :poster_image
       t.text :cast
+      t.text :genre
 
       t.timestamps
     end
