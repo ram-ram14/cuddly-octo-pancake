@@ -12,7 +12,8 @@ class ReviewsController < ApplicationController
 
   # New action to create a new review object
   def new
-    @review = Review.new
+    @movie = Movie.find(params[:movie_id])
+    @review = @movie.reviews.build
   end
 
   # Create action to save a new review object to the database
