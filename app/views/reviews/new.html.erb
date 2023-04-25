@@ -1,2 +1,37 @@
-<h1>Reviews#new</h1>
-<p>Find me in app/views/reviews/new.html.erb</p>
+# Added a new heading for the page
+<h1>New Review</h1>
+
+# Adding a new form to create a new review. 
+<%= form_with(model: [@movie, @review], local: true) do |form| %>
+    # Check if there are any errors with the review form.
+  <% if @review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+      <ul>
+        <% @review.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    # Added a field to allow users to input a rating for the movie. 
+  <div class="field">
+    <%= form.label :rating %>
+    <%= form.number_field :rating, in: 1..5, step: 1 %>
+  </div>
+
+    # Added a fiel to allow users to leave a comment about the movie (review)
+  <div class="field">
+    <%= form.label :comment %>
+    <%= form.text_area :comment %>
+  </div>
+
+    # Added a button to submit the review form. 
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+    # Links back to the movie show page
+<%= link_to 'Back', movie_path(@movie) %>
