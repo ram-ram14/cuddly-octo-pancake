@@ -1,11 +1,24 @@
 Rails.application.routes.draw do
-  get 'reviews/index'
-  get 'reviews/show'
-  get 'reviews/edit'
-  get 'reviews/new'
-  get 'users/index'
-  get 'users/show'
-  get 'users/edit'
-  get 'users/new'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  # Movies routes
+  resources :movies do
+    resources :reviews
+  end
+
+  # Reviews routes
+  resources :reviews, only: [:index, :show, :edit, :new, :create, :update, :destroy]
+
+  # Users routes
+  resources :users, only: [:index, :show, :edit, :update, :destroy]
+
+  # Sessions routes
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+
+  # Registration routes
+  get '/register', to: 'users#new'
+  post '/register', to: 'users#create'
+
+  # Home route
+  root 'movies#index'
 end
