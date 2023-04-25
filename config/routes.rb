@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   # Users routes
   resources :users, only: [:index, :show, :edit, :update, :destroy]
 
+
   # Sessions routes
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'

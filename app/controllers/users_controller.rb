@@ -7,6 +7,11 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  # Creates a new user and assigns it to an instance variable.
+  def new
+    @user = User.new
+  end
+  
   # Finds a specific user by their respective ID in the database and assigns them to an instance variable
   def show
     @user = User.find(params[:id])
@@ -15,11 +20,6 @@ class UsersController < ApplicationController
   # Same as above
   def edit
     @user = User.find(params[:id])
-  end
-
-  # Creates a new user and assigns it to an instance variable.
-  def new
-    @user = User.new
   end
 
   # Creates a new user with the user_params and assigns it to an instance variable. 
@@ -55,8 +55,6 @@ class UsersController < ApplicationController
     @user.destroy
     redirect_to users_path
   end
-
-end
 
   # Permits specific attributes to be saved
 

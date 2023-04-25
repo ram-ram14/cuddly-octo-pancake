@@ -19,3 +19,6 @@
     <li><%= link_to review.content, review_path(review) %></li>
   <% end %>
 </ul>
+
+# Displaying a link to view the user's profile
+<%= link_to 'View Profile', user_path(@user) %>

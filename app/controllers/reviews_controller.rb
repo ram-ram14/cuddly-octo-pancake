@@ -18,14 +18,14 @@ class ReviewsController < ApplicationController
 
   # Create action to save a new review object to the database
   def create
-    @review = Review.new(review_params)
-
+    @movie = Movie.find(params[:movie_id])
+    @review = @movie.reviews.build(review_params)
     if @review.save
-      redirect_to @review
+      redirect_to movie_path(@movie), notice: 'Review was successfully created.'
     else
       render :new
     end
-  end
+  end  
 
   # Edit action to retrieve an existing review object for editing
   def edit

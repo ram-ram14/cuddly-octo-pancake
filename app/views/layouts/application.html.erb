@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Project</title>
+    <title>Film Rave</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+
+<nav>
+  <ul>
+    <li><%= link_to 'Home', root_path %></li>
+    <li><%= link_to 'Movies', movies_path %></li>
+    <% if current_user %>
+      <li><%= link_to 'Profile', user_path(@current_user) %></li>
+    <% end %>
+  </ul>
+</nav>
 
   <body>
     <%= yield %>
