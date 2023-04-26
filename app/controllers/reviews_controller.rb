@@ -8,6 +8,7 @@ class ReviewsController < ApplicationController
   # Show action to retrieve a single review by id
   def show
     @review = Review.find(params[:id])
+    @movie = Movie.find(@review.movie_id)
   end
 
   # New action to create a new review object

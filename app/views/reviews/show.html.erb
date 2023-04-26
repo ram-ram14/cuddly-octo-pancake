@@ -1,19 +1,14 @@
-# Displays the header for the review details section
 <h1>Review Details</h1>
 
-# Displays the username of the user who created the review
 <p>User: <%= @review.user.username %></p>
 
-# Displays the rating given by the user in the review
 <p>Rating: <%= @review.rating %></p>
 
-# Displays the text "Comment" on a new line. 
 <p>Comment:</p>
-# Displays the comment text for the review. 
 <p><%= @review.comment %></p>
 
-# Links to the edit review path. 
+<p><strong>Movie:</strong> <%= @review.movie.title %></p>
+
 <%= link_to 'Edit', edit_review_path(@review) %>
 
-# Links to go back to the movie details page. 
 <%= link_to 'Back', movie_path(@review.movie) %>

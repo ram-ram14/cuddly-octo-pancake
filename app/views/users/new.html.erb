@@ -8,30 +8,19 @@
     </ol>
 <% end %>
 
-# Generated a form to create a new user through input fields for the user's username, email, password and favorite genres. 
-
 <%= form_for @user do |f| %>
-  <div>
+
     <%= f.label :username %>
     <%= f.text_field :username %>
-  </div>
 
-  <div>
-    <%= f.label :email %>
-    <%= f.email_field :email %>
-  </div>
+    <%= f.label :email, :class => 'form-label' %>
+    <%= f.email_field :email, :class => 'form-control' %>
 
-  <div>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
+    <%= f.label :password, :class => 'form-label' %>
+    <%= f.password_field :password, :class => 'form-control' %>
 
-    <div>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-    </div>
+    <%= f.label :password_confirmation, :class => 'form-label' %>
+    <%= f.password_field :password_confirmation, :class => 'form-control' %>
 
-  <div>
-    <%= f.submit "Create User" %>
-  </div>
+    <%= f.submit "Sign up!", :class => 'btn btn-success btn-lg'%>
 <% end %>

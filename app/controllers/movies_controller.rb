@@ -11,6 +11,7 @@ class MoviesController < ApplicationController
         movie = Movie.create movie_params
         @current_user.movies << movie
 
+        review = Review.create(user: @current_user, movie: movie)
         redirect_to root_path
       end      
       

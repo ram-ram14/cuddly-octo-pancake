@@ -8,17 +8,17 @@ Rails.application.routes.draw do
   resources :reviews, only: [:index, :show, :edit, :new, :create, :update, :destroy]
 
   # Users routes
-  resources :users, only: [:new, :create]
+  resources :users, :only => [:index, :new, :create]
 
 
   # Sessions routes
-  get '/login', to: 'sessions#new'
-  post '/login', to: 'sessions#create'
-  delete '/logout', to: 'sessions#destroy'
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  delete '/login' => 'sessions#destroy'
 
   # Registration routes
-  get '/register', to: 'users#new'
-  post '/register', to: 'users#create'
+  get '/register' => 'users#new'
+  post '/register' => 'users#create'
 
   # Home route
   root 'movies#index'

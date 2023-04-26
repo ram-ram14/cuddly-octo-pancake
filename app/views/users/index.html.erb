@@ -1,10 +1,5 @@
 <h1>All Users</h1>
 
-# Created a loop to iterate through each user in the instance variable and created a link to the show page
-<ul>
-  <% @users.each do |user| %>
-    <li><%= link_to user.username, user_path(user) %></li>
-  <% end %>
-</ul>
-
-<%= link_to 'New User', users_path %>
+<% @users.each do |user| %>
+    <p><%= user.email %></p>
+<% end %>
