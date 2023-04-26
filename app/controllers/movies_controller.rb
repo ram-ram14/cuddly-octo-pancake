@@ -1,41 +1,35 @@
 class MoviesController < ApplicationController
-      def index
-        @q = Movie.ransack(params[:q])
-        @movies = @q.result(distinct: true).includes(:reviews).order(:title).page(params[:page])
-      end  
+  require 'net/http'
+  require 'json'
   
-      def new
-        @movie = Movie.new
+  def new
+    @movie = Movie.new
+  end
+  
+  def index
+    if params[:search].present?
+      url = URI("https://www.omdbapi.com/?s=#{params[:search]}&apikey=409f16f")
+      res = Net::HTTP.get(url)
+      movies = JSON.parse(res)['Search']
+      @movies = []
+      movies.each do |movie|
+        m = Movie.find_or_create_by :title => movie['Title'], :poster_image => movie['Poster']
+        @movies << m 
       end
+    else
+      @movies = []
+    end 
+  end
 
-      def create
-        movie = Movie.create movie_params
-        if params[:file].present?
-          req = Cloudinary::Uploader.upload(params[:file])
-          work.image = req["public_id"]
-          work.save
-        end
-        redirect_to work 
-        @current_user.movies << movie
+  def show
+    url = URI("https://www.omdbapi.com/?i=#{params[:id]}&apikey=#{ENV['409f16f']}")
+    res = Net::HTTP.get(url)
+    @movie = JSON.parse(res)
+  end
 
-        review = Review.create(user: @current_user, movie: movie)
-        redirect_to root_path
-      end     
+  private
 
-      def show
-        @movie = Movie.find(params[:id])
-        @reviews = @movie.reviews
-      end
-      
-      def destroy
-        @movie = Movie.find(params[:id])
-        @movie.destroy
-      
-        redirect_to movies_path
-      end
-      
-      private
-      def movie_params
-        params.require(:movie).permit(:title)
-      end
+  def movie_params
+    params.require(:movie).permit(:title)
+  end
 end
