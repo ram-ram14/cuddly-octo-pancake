@@ -1,1 +1,8 @@
-<%= link_to 'Write a Review', new_review_path(movie_id: @movie.id) %>
+<% if @movie.reviews.any? %>
+  <h3>Reviews:</h3>
+  <% @movie.reviews.each do |review| %>
+    <p>
+      <%= review.user.username %>: <%= review.content %>
+    </p>
+  <% end %>
+<% end %>

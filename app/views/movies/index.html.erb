@@ -1,45 +1,16 @@
-<!--
-This view displays a table of all movies, with columns for title, director, released date, plot, runtime, poster image, cast, genre, and actions.
--->
-<h1>All Movies</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Director</th>
-      <th>Released</th>
-      <th>Plot</th>
-      <th>Runtime</th>
-      <th>Poster Image</th>
-      <th>Cast</th>
-      <th>Genre</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @movies.each do |movie| %>
-      <tr>
-        <td><%= movie.title %></td>
-        <td><%= movie.director %></td>
-        <td><%= movie.release_date %></td>
-        <td><%= movie.plot %></td>
-        <td><%= movie.runtime %></td>
-        <td>
-         <% if movie.poster_image.present? %>
-            <%= image_tag(movie.poster_image) %>
-          <% else %>
-            No poster available
-          <% end %>
-        </td>
-        <td><%= movie.cast %></td>
-        <td><%= movie.genre %></td>
-        
-          <%= link_to 'View', movie_path(movie) %>
-          <%= link_to 'Edit', edit_movie_path(movie) %>
-          <%= link_to 'Delete', movie_path(movie), method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= link_to 'Add New Movie', new_movie_path %>
+<div class="movies">
+  <% @movies.each do |movie| %>
+    <div class="movie">
+      <h2><%= link_to movie.title, movie %></h2>
+      <p><%= movie.release_date&.strftime('%Y') || '-' %></p>
+      <%= image_tag movie.poster_image %>
+    </div>
+  <% end %>
+</div>
+
+<%= paginate @movies %>
+
+<%= form_tag movies_path, method: :get do %>
+  <%= text_field_tag :q, params[:q], placeholder: 'Search movies' %>
+  <%= submit_tag 'Search' %>
+<% end %>

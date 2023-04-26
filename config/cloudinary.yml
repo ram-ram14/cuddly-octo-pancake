@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dxupgburs
+  api_key: '512928227196426'
+  api_secret: bf1msfVYqMxgJ_0Y8geH9lrL91I
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: dxupgburs
+  api_key: '512928227196426'
+  api_secret: bf1msfVYqMxgJ_0Y8geH9lrL91I
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: dxupgburs
+  api_key: '512928227196426'
+  api_secret: bf1msfVYqMxgJ_0Y8geH9lrL91I
+  enhance_image_tag: true
+  static_file_support: false

@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+  before_action :set_movie
 
   # Index action to retrieve all reviews
   def index
@@ -15,13 +16,16 @@ class ReviewsController < ApplicationController
   def new
     @movie = Movie.find(params[:movie_id])
     @review = @movie.reviews.build
+    rescue ActiveRecord::RecordNotFound
+    redirect_to movies_path, alert: "Movie not found"
   end
 
   # Create action to save a new review object to the database
   def create
-    @movie = Movie.find(params[:movie_id])
-    @review = @movie.reviews.build(review_params)
+    @review = Review.new(review_params)
+    @review.user = @current_user
     if @review.save
+      @movie = @review.movie
       redirect_to movie_path(@movie), notice: 'Review was successfully created.'
     else
       render :new
@@ -54,8 +58,12 @@ class ReviewsController < ApplicationController
 
   private
 
+  def set_movie
+    @movie = Movie.find(params[:movie_id])
+  end
+
   # Review params method to whitelist incoming review data
   def review_params
-    params.require(:review).permit(:title, :body, :rating, :movie_id)
+    params.require(:review).permit(:title, :content, :rating, :movie_id)
   end
 end

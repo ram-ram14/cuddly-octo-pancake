@@ -7,7 +7,7 @@
     <tr>
       <!-- Column headings -->
       <th>Title</th>
-      <th>Body</th>
+      <th>Content</th>
       <th>Rating</th>
       <th>Movie</th>
       <th>Actions</th>
@@ -18,7 +18,7 @@
       <!-- Loop through each review in the @reviews collection and display the details in a table row -->
       <tr>
         <td><%= review.title %></td>
-        <td><%= review.body %></td>
+        <td><%= review.content %></td>
         <td><%= review.rating %></td>
         <!-- Link to the movie that the review is associated with -->
         <td><%= link_to review.movie.title, review.movie %></td>
