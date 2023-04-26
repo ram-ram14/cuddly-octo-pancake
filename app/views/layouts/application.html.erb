@@ -9,17 +9,21 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-<nav>
-  <ul>
-    <li><%= link_to 'Home', root_path %></li>
-    <li><%= link_to 'Movies', movies_path %></li>
-    <% if current_user %>
-      <li><%= link_to 'Profile', user_path(@current_user) %></li>
-    <% end %>
-  </ul>
-</nav>
-
   <body>
-    <%= yield %>
+    <div class="container"></div>
+      <nav>
+        <% if @current_user.present? %>
+          <% if @current_user.admin? %>
+            <%= link_to "All users", users_path %>
+          <% end %>
+          <%= link_to "New movie", new_movie_path %>
+          <%= link_to "Log out #{ @current_user.email }", login_path, :method => :delete %>
+        <% else %>
+          <%= link_to "Sign up!", new_user_path %>
+          <%= link_to "Sign in", login_path %>
+        <% end %>
+      </nav>
+      <%= yield %>
+    </div>
   </body>
 </html>

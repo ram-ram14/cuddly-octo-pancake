@@ -1,35 +1,21 @@
 class MoviesController < ApplicationController
-    def index
+      def index
         @movies = Movie.all
-      end
-      
-      def show
-        @movie = Movie.find(params[:id])
       end
       
       def new
         @movie = Movie.new
       end
-      
-      def create
-        @movie = Movie.new(movie_params)
-        if @movie.save
-          redirect_to @movie
-        else
-          render 'new'
-        end
-      end
 
-      def destroy
-        @movie = Movie.find(params[:id])
-        @movie.destroy
-      
-        redirect_to movies_path
-      end
-      
+      def create
+        movie = Movie.create movie_params
+        @current_user.movies << movie
+
+        redirect_to root_path
+      end      
       
       private
       def movie_params
-        params.require(:movie).permit(:title, :director, :release_date, :runtime, :genre, :plot, :poster_image)
+        params.require(:movie).permit(:title)
       end
 end

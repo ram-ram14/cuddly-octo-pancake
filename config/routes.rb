@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :reviews, only: [:index, :show, :edit, :new, :create, :update, :destroy]
 
   # Users routes
-  resources :users, only: [:index, :show, :edit, :update, :destroy]
+  resources :users, only: [:new, :create]
 
 
   # Sessions routes
