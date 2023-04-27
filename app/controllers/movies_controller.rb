@@ -11,9 +11,12 @@ class MoviesController < ApplicationController
       url = URI("https://www.omdbapi.com/?s=#{params[:search]}&apikey=409f16f")
       res = Net::HTTP.get(url)
       movies = JSON.parse(res)['Search']
+      puts movies
       @movies = []
       movies.each do |movie|
-        m = Movie.find_or_create_by :title => movie['Title'], :poster_image => movie['Poster']
+        puts 'hello'
+        puts movie 
+        m = Movie.find_or_create_by(:title => movie['Title'], :poster_image => movie['Poster'], :plot => movie['Plot'], :director => movie["Director"], :release_date => movie["Released"], :runtime => movie["Runtime"])
         @movies << m 
       end
     else
@@ -22,11 +25,19 @@ class MoviesController < ApplicationController
   end
 
   def show
-    url = URI("https://www.omdbapi.com/?i=#{params[:id]}&apikey=#{ENV['409f16f']}")
-    res = Net::HTTP.get(url)
-    @movie = JSON.parse(res)
+    @movie = Movie.find(params[:id])
   end
 
+  def add_review
+    @movie = Movie.find(params[:id])
+    @reviews = @movie.reviews
+    @review = Review.new
+    if @reviews.empty?
+      @show_add_review_button = true
+    end
+    @movie_title = @movie.title
+  end
+  
   private
 
   def movie_params

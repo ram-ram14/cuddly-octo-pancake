@@ -16,9 +16,7 @@ class ReviewsController < ApplicationController
   def new
     @movie = Movie.find(params[:movie_id])
     @review = @movie.reviews.build
-    rescue ActiveRecord::RecordNotFound
-    redirect_to movies_path, alert: "Movie not found"
-  end
+  end  
 
   # Create action to save a new review object to the database
   def create

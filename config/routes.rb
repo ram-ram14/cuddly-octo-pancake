@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
   # Movies routes
   resources :movies do
-    resources :reviews
+    resources :reviews, only: [:new, :create, :index]
+    get 'add_review', on: :member
   end
-
-  # Reviews routes
-  resources :reviews, only: [:index, :show, :edit, :new, :create, :update, :destroy]
 
   # Users routes
   resources :users, :only => [:index, :new, :create]
