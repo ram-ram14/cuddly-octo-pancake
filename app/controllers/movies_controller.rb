@@ -11,14 +11,22 @@ class MoviesController < ApplicationController
       url = URI("https://www.omdbapi.com/?s=#{params[:search]}&apikey=409f16f")
       res = Net::HTTP.get(url)
       movies = JSON.parse(res)['Search']
-      puts movies
       @movies = []
       movies.each do |movie|
-        puts 'hello'
-        puts movie 
-        m = Movie.find_or_create_by(:title => movie['Title'], :poster_image => movie['Poster'], :plot => movie['Plot'], :director => movie["Director"], :release_date => movie["Released"], :runtime => movie["Runtime"])
+        url = URI("https://www.omdbapi.com/?apikey=409f16f&t=#{CGI.escape(movie['Title'])}")
+        res = Net::HTTP.get(url)
+        movie_details = JSON.parse(res)
+        m = Movie.find_or_create_by(
+          title: movie_details['Title'],
+          poster_image: movie_details['Poster'],
+          plot: movie_details['Plot'],
+          director: movie_details['Director'],
+          release_date: movie_details['Released'],
+          runtime: movie_details['Runtime']
+        )
         @movies << m 
       end
+      @movies = Movie.where(id: @movies.map(&:id)).limit(1)
     else
       @movies = []
     end 
