@@ -1,11 +1,8 @@
-# Displaying a heading for the page.
 
 <h1>Edit Review</h1>
 
-# Used the form_with helper to create a form to edit. 
 
 <%= form_with(model: [@movie, @review], local: true) do |form| %>
-    # Checks if there are any errors and will display if it is the case.
   <% if @review.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
@@ -17,29 +14,24 @@
     </div>
   <% end %>
 
-    # Added an input field for the title
   <div class="field">
     <%= form.label :title %>
     <%= form.text_field :title %>
   </div>
 
-     # Added an input field for the body
   <div class="field">
     <%= form.label :body %>
     <%= form.text_area :body %>
   </div>
 
-    # Added an input field for the rating
   <div class="field">
     <%= form.label :rating %>
     <%= form.number_field :rating %>
   </div>
 
-    # Added a submit button for the form. 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
 
-    # Links back to the movie's show page.
 <%= link_to 'Back', movie_path(@movie) %>

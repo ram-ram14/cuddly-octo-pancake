@@ -15,3 +15,13 @@
 //= require popper
 //= require bootstrap
 //= require_tree .
+
+document.addEventListener("DOMContentLoaded", function() {
+    var backButton = document.getElementById("back-button");
+    if (backButton) {
+      backButton.addEventListener("click", function() {
+        window.history.back();
+      });
+    }
+  });
+  
