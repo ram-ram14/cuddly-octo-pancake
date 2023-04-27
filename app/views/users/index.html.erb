@@ -1,5 +1,7 @@
+<!-- Added a heading that displays 'All Users' -->
 <h1>All Users</h1>
 
+<!-- A loop that iterates through the users, displaying each user's email address -->
 <% @users.each do |user| %>
     <p><%= user.email %></p>
 <% end %>

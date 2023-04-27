@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+  <!-- Setting the page title to 'Film Rave' -->
     <title>Film Rave</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,8 +11,11 @@
   </head>
 
   <body>
+  <!-- Adding a container element for the page -->
     <div class="container"></div>
+    <!-- Creating a navigation bar at the top of the page -->
       <nav>
+      <!-- Checks if a user is logged in and displays 'Home' and 'Log out' on the nav bar -->
         <% if @current_user.present? %>
           <% if @current_user.admin? %>
             <%= link_to "All users", users_path %>
@@ -19,6 +23,7 @@
           <%= link_to "Home", movies_path %>&nbsp;
           <%= link_to "Log out #{ @current_user.email }", login_path, :method => :delete %>
         <% else %>
+        <!-- Otherwise shows the option to sign up or sign in -->
           <%= link_to "Sign up!", new_user_path %>
           <%= link_to "Sign in", login_path %>
         <% end %>

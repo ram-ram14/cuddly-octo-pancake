@@ -1,17 +1,30 @@
+<!-- container class centers content-->
 <div class="container text-center">
+<!-- row in the container that centers content-->
   <div class="row justify-content-center">
+  <!-- column that takes up 8 out of 12 grid columns -->
     <div class="col-md-8">
       <div class="movies">
+      <!-- loop that iterates through each movie and displays related information -->
         <% @movies.each do |movie| %>
+        <!-- a single movie which contains the title of the movie, the director, release date, runtime and plot -->
           <div class="movie">
+          <!-- If the poster image does not contain an image-->
           <% if movie.poster_image != 'N/A' %>
+          <!-- only displayed if it exists -->
             <%= image_tag movie.poster_image %>
           <% end %>
+          <!-- displays the movie title -->
           <h2><%= movie.title %></h2>
+          <!-- the director -->
           <p><strong>Director:</strong> <%= movie.director %></p>
+          <!-- release date -->
           <p><strong>Released:</strong> <%= movie.release_date %></p>
+          <!-- runtime -->
           <p><strong>Runtime:</strong> <%= movie.runtime %></p>
+          <!-- plot -->
           <p><strong>Plot:</strong> <%= movie.plot %></p>
+          <!-- adds a link to the movie's show page where a user can add a review of the movie -->
           <%= link_to 'Add a review', movie_path(movie.id) %>
         </div>
         <% end %>
@@ -21,11 +34,13 @@
   
   <div class="row justify-content-center mt-5">
     <div class="col-md-8">
+    <!-- creates a search form that allows users to search for a movie by its title -->
       <%= form_tag movies_path, :method => 'get' do  %>
         <div class="form-group">
           <%= label_tag :search, 'Movie Title' %>
           <%= text_field_tag :search, nil, class: "form-control" %>
         </div>
+        <!-- creates a submit button for the search form -->
         <%= submit_tag 'Search', class: "btn btn-primary" %>
       <% end %>
     </div>

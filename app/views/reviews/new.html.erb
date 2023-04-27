@@ -1,10 +1,16 @@
+<!-- Wrapped the contents of the page in a container class -->
 <div class="container">
+<!-- Centered horizontally within the container -->
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
+    <!-- Centered at the top -->
       <h1 class="text-center">New Review</h1>
 
+      <!-- Form is submitted to the @movie @review route -->
       <%= form_with(model: [@movie, @review], local: true, html: {class: 'form'}) do |form| %>
         <%= form.hidden_field :movie_id, value: @movie.id %>
+        
+        <!-- The form includes 3 input fields: title, rating and content -->
 
         <div class="form-group">
           <%= form.label :title %>
@@ -21,6 +27,7 @@
           <%= form.text_area :content, class: 'form-control', placeholder: 'Enter review content' %>
         </div>
 
+        <!-- Submit review button that is centered at the botto of the form -->
         <div class="text-center">
           <%= form.submit 'Submit Review', class: 'btn btn-primary' %>
         </div>

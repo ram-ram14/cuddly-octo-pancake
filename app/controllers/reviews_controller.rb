@@ -56,11 +56,12 @@ class ReviewsController < ApplicationController
 
   private
 
+  # A private method used as a before action method to ensure tha the instance variable is properly set for actions that may need it. 
   def set_movie
     @movie = Movie.find(params[:movie_id])
   end
 
-  # Review params method to whitelist incoming review data
+  # Review params method to list incoming review data
   def review_params
     params.require(:review).permit(:title, :content, :rating, :movie_id)
   end

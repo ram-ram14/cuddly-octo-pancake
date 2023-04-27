@@ -1,25 +1,30 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-6">
+    <!-- Includes a header with the title 'Login' -->
       <h1 class="text-center mb-4">Login</h1>
 
+      <!-- Includes an error message that appears if there is a flash message -->
       <% if flash[:error].present? %>
         <div class="alert alert-danger" role="alert">
           <%= flash[:error] %>
         </div>
       <% end %>
 
+      <!-- Generate input fields for the email --->
       <%= form_tag login_path do %>
         <div class="form-group">
           <%= label_tag :email, nil, :class => 'form-label' %>
           <%= email_field_tag :email, nil, :class => 'form-control' %>
         </div>
 
+        <!-- Generate input fields for the password --->
         <div class="form-group">
           <%= label_tag :password, nil, :class => 'form-label' %>
           <%= password_field_tag :password, nil, :class => 'form-control' %>
         </div>
 
+        <!-- Creates a button that dispays 'Sign in' --->
         <div class="form-group">
           <%= submit_tag "Sign in", :class => 'btn btn-danger btn-lg btn-block m-2' %>
         </div>

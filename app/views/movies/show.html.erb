@@ -1,10 +1,15 @@
+<!-- Added a container to wrap the content of the page -->
 <div class="container">
   <div class="row">
     <div class="col-md-8 offset-md-2">
+    <!-- The title of the movie is displayed and centered at the center -->
       <h2 class="text-center"><%= @movie.title %></h2>
+      <!-- Checks if there are any reviews -->
       <% if @movie.reviews.any? %>
         <div class="reviews">
+          <!-- If there are, a header that says 'Reviews' will appear -->
           <h3>Reviews:</h3>
+          <!-- Each review includes the user's username, a rating out of 5 and the content -->
           <% @movie.reviews.each do |review| %>
             <div class="review">
               <p><strong>Reviewer:</strong> <%= review.user.username %></p>
@@ -16,6 +21,7 @@
         </div>
       <% end %>
       <div class="text-center">
+        <!-- Added a button that links to 'Add a review' page for the current movie -->
         <%= link_to 'Add a review', new_movie_review_path(@movie), class: 'btn btn-primary' %>
       </div>
     </div>
