@@ -8,7 +8,9 @@ Drawing on the concepts and lessons learned for both back-end and front-end deve
 
 ## Motivation (How & Why)
 
-Whilst there are many existing solutions for this exact same 'problem' and one might ask: why would someone opt to use this very simplified version over something far more sophisticated such as IMDB's rating and reviewing system? That is a very good question and unfortunately I can't answer that, but what I can say is that it replicates a lot of the functionality that a site like IMDB offers, but obviously not to the same extent. 
+Whilst there are many existing solutions for this exact same 'problem' and one might ask: why would someone opt to use this very simplified version over something far more sophisticated such as IMDB's rating and reviewing system? 
+
+That is a very good question and unfortunately I can't answer that, but what I can say is that it replicates a lot of the functionality that a site like IMDB offers, but obviously not to the same extent. 
 
 ### Tech/frameworks Used
 
@@ -49,6 +51,8 @@ This is [a link to my webpage](https://github.com/ram-ram14/cuddly-octo-pancake)
 The main difficulties I found were in relation to the user sign-up and login process, which took up a significant amount of my time. I found that I was going through many rabbit holes to enforce for specific characters when creating a password or adding functionality to 'forget a password', which I gave entirely as I had more pressing functionality to build. 
 
 In addition, integrating the API was a troublesome hurdle that I had to overcome as the webpage would not display more than the poster image. Afterwards, I managed to get more information to display but it had come at the cost of the website being more slow. Initially also, the website would display all the results relating to the movie title that was searched and it was difficult to limit the result to 1 website, but I managed a way around that. 
+
+Lastly, on the reviews display, it is missing a paramater for the title. I did not have enough time to display the value from the form on the page. 
 
 
 ### How to use?
