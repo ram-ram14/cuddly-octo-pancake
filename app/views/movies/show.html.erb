@@ -8,10 +8,11 @@
       <% if @movie.reviews.any? %>
         <div class="reviews">
           <!-- If there are, a header that says 'Reviews' will appear -->
-          <h3>Reviews:</h3>
-          <!-- Each review includes the user's username, a rating out of 5 and the content -->
+          <h3 style="margin-bottom: 20px;">Reviews:</h3>
+          <!-- Each review includes the title of the review, the user's username, a rating out of 5 and the content -->
           <% @movie.reviews.each do |review| %>
             <div class="review">
+              <p><strong>Title:</strong> <%= review.title %></p>
               <p><strong>Reviewer:</strong> <%= review.user.username %></p>
               <p><strong>Rating:</strong> <%= review.rating %>/5</p>
               <p><strong>Content:</strong> <%= review.content %></p>
