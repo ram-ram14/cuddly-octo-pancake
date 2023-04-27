@@ -1,17 +1,23 @@
 <div class="container">
-  <h2 class="text-center"><%= @movie.title %></h2>
-  <% if @movie.reviews.any? %>
-    <div class="reviews">
-      <h3>Reviews:</h3>
-      <% @movie.reviews.each do |review| %>
-        <div class="review">
-          <p><strong>Reviewer:</strong> <%= review.user.username %></p>
-          <p><strong>Rating:</strong> <%= review.rating %>/5</p>
-          <p><strong>Content:</strong> <%= review.content %></p>
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h2 class="text-center"><%= @movie.title %></h2>
+      <% if @movie.reviews.any? %>
+        <div class="reviews">
+          <h3>Reviews:</h3>
+          <% @movie.reviews.each do |review| %>
+            <div class="review">
+              <p><strong>Reviewer:</strong> <%= review.user.username %></p>
+              <p><strong>Rating:</strong> <%= review.rating %>/5</p>
+              <p><strong>Content:</strong> <%= review.content %></p>
+            </div>
+            <hr>
+          <% end %>
         </div>
-        <hr>
       <% end %>
+      <div class="text-center">
+        <%= link_to 'Add a review', new_movie_review_path(@movie), class: 'btn btn-primary' %>
+      </div>
     </div>
-  <% end %>
-  <%= link_to 'Add a review', new_movie_review_path(@movie), class: 'btn btn-primary' %>
+  </div>
 </div>
