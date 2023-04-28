@@ -1,33 +1,56 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <!-- Setting the page title to 'Film Rave' -->
+    <!-- Setting the page title to 'Film Rave' -->
     <title>Film Rave</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <!-- Adding Bootstrap stylesheet -->
+    <%= stylesheet_link_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css', media: 'all', 'data-turbolinks-track': 'reload' %>
+    
+     <!-- Adding Bootstrap JavaScript -->
+    <%= javascript_include_tag 'https://code.jquery.com/jquery-3.3.1.slim.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js', 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js', 'data-turbolinks-track': 'reload' %>
+    
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-  <!-- Adding a container element for the page -->
-    <div class="container"></div>
-    <!-- Creating a navigation bar at the top of the page -->
-      <nav>
-      <!-- Checks if a user is logged in and displays 'Home' and 'Log out' on the nav bar -->
-        <% if @current_user.present? %>
-          <% if @current_user.admin? %>
-            <%= link_to "All users", users_path %>
-          <% end %>
-          <%= link_to "Home", movies_path %>&nbsp;
-          <%= link_to "Log out #{ @current_user.email }", login_path, :method => :delete %>
-        <% else %>
-        <!-- Otherwise shows the option to sign up or sign in -->
-          <%= link_to "Sign up!", new_user_path %>
-          <%= link_to "Sign in", login_path %>
-        <% end %>
+    <!-- Adding a container element for the page -->
+    <div class="container">
+
+      <!-- Creating a navigation bar at the top of the page using Bootstrap -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Film Rave</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item <%= 'active' if current_page?(movies_path) %>">
+              <%= link_to "Home", movies_path, class: "nav-link" %>
+            </li>
+            <% if @current_user.present? %>
+              <% if @current_user.admin? %>
+                <li class="nav-item <%= 'active' if current_page?(users_path) %>">
+                  <%= link_to "All users", users_path, class: "nav-link" %>
+                </li>
+              <% end %>
+              <li class="nav-item">
+                <%= link_to "Log out #{ @current_user.email }", login_path, method: :delete, class: "nav-link" %>
+              </li>
+            <% else %>
+              <li class="nav-item <%= 'active' if current_page?(new_user_path) %>">
+                <%= link_to "Sign up!", new_user_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item <%= 'active' if current_page?(login_path) %>">
+                <%= link_to "Sign in", login_path, class: "nav-link" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
       </nav>
+
       <%= yield %>
     </div>
   </body>

@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+
   # This action displays the login form. 
   def new
     end
