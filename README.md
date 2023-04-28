@@ -24,7 +24,7 @@ Built with
 
 ### Link to Game
 
-This is [a link to my webpage](https://github.com/ram-ram14/cuddly-octo-pancake).
+This is [a link to my git repo](https://github.com/ram-ram14/cuddly-octo-pancake).
 
 ### Features
 
